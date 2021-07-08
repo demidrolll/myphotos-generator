@@ -28,10 +28,14 @@ public class DownloadPhotosFromUnsplash {
     private static final Logger log = LoggerFactory.getLogger(DownloadPhotosFromUnsplash.class);
 
     public static void main(String[] args) throws Exception {
-        new DownloadPhotosFromUnsplash().execute(
-                "https://api.unsplash.com/photos?per_page=30",
-                Path.of("external/test-data/photos")
-        );
+        try {
+            new DownloadPhotosFromUnsplash().execute(
+                    "https://api.unsplash.com/photos?per_page=30",
+                    Path.of("external/test-data/photos")
+            );
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
     }
 
     public void execute(String unsplashSourceUrl, Path destinationDirectoryPath) throws IOException {
@@ -45,7 +49,7 @@ public class DownloadPhotosFromUnsplash {
     }
 
     private void displayErrorMessage(Response response) {
-        log.error("Request unsplash failed: {}", response.toString());
+        log.error("Request unsplash failed: {}", response);
     }
 
     private void parseValidResponse(Response response, Path destinationDirectoryPath) {

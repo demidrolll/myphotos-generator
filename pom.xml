@@ -35,6 +35,16 @@
             <version>3.0.2</version>
         </dependency>
         <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tomee</groupId>
             <artifactId>tomee-embedded</artifactId>
             <version>8.0.6</version>
@@ -56,12 +66,10 @@
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
+                    <groupId>org.apache.tomee.maven</groupId>
+                    <artifactId>tomee-embedded-maven-plugin</artifactId>
+                    <version>8.0.6</version>
                     <configuration>
-                        <port>9090</port>
-                        <path>/</path>
                     </configuration>
                 </plugin>
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
