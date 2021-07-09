@@ -59,6 +59,26 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.31</version>
         </dependency>
+        <dependency>
+            <groupId>com.demidrolll</groupId>
+            <artifactId>myphotos-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demidrolll</groupId>
+            <artifactId>myphotos-model</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demidrolll</groupId>
+            <artifactId>myphotos-ejb</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
 
     </dependencies>
 

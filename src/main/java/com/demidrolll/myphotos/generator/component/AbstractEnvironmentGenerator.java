@@ -48,14 +48,11 @@ public abstract class AbstractEnvironmentGenerator {
     }
 
     private String resolveModule(String module) {
-        StringBuilder builder = new StringBuilder(module);
-        variables.forEach((key, value) -> {
-            int start = builder.indexOf(key);
-            if (start >= 0) {
-                builder.replace(start, start + key.length(), value);
-            }
-        });
-        return
+        String result = module;
+        for (Map.Entry<String, String> entry : variables.entrySet()) {
+            result = result.replace(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
 
     private void setupClasspathEnvironmentProperties(Map<String, Object> properties) {
