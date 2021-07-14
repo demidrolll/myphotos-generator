@@ -34,7 +34,6 @@ public abstract class AbstractEnvironmentGenerator {
         setupVariables();
         setupClasspathEnvironmentProperties(properties);
         properties.put(EJBContainer.MODULES, getModulePath());
-        properties.put(EJBContainer.PROVIDER, "tomee-embedded");
 
         return properties;
     }
