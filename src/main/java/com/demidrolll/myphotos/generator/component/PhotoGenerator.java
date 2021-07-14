@@ -1,8 +1,8 @@
 package com.demidrolll.myphotos.generator.component;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -21,8 +21,6 @@ public class PhotoGenerator {
 
     private final List<String> fileNames = getAllTestPhotos();
 
-    private int index = 0;
-
     private List<String> getAllTestPhotos() {
         List<String> list = new ArrayList<>();
         Path rootPath = Paths.get("external/test-data/photos");
@@ -39,16 +37,13 @@ public class PhotoGenerator {
 
     public List<String> generatePhotos(int photoCount) {
         List<String> photos = new ArrayList<>();
+        int index = 0;
         for (int i = 0; i < photoCount; i++) {
-            photos.add(getPhoto());
+            if (index >= fileNames.size()) {
+                index = 0;
+            }
+            photos.add(fileNames.get(index++));
         }
         return Collections.unmodifiableList(photos);
-    }
-
-    private String getPhoto() {
-        if (index >= fileNames.size()) {
-            index = 0;
-        }
-        return fileNames.get(index++);
     }
 }

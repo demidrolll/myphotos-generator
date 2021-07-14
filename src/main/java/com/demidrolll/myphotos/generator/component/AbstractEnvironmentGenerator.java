@@ -1,7 +1,6 @@
 package com.demidrolll.myphotos.generator.component;
 
-import jakarta.ejb.embeddable.EJBContainer;
-
+import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +34,7 @@ public abstract class AbstractEnvironmentGenerator {
         setupVariables();
         setupClasspathEnvironmentProperties(properties);
         properties.put(EJBContainer.MODULES, getModulePath());
+        properties.put(EJBContainer.PROVIDER, "tomee-embedded");
 
         return properties;
     }

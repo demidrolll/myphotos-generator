@@ -2,10 +2,10 @@ package com.demidrolll.myphotos.generator.component;
 
 import com.demidrolll.myphotos.ejb.repository.PhotoRepository;
 import com.demidrolll.myphotos.model.domain.Photo;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Random;
 
