@@ -19,7 +19,8 @@ public abstract class AbstractEnvironmentGenerator {
 
     protected final void execute() throws Exception {
         Map<String, Object> properties = setupProperties();
-        try (EJBContainer ec = EJBContainer.createEJBContainer(properties)) {
+        try (SshConnection ssh = new SshConnection();
+             EJBContainer ec = EJBContainer.createEJBContainer(properties)) {
             Context context = ec.getContext();
             context.bind("inject", this);
             generate();
@@ -34,16 +35,17 @@ public abstract class AbstractEnvironmentGenerator {
         setupVariables();
         setupClasspathEnvironmentProperties(properties);
         properties.put(EJBContainer.MODULES, getModulePath());
+        properties.put(EJBContainer.PROVIDER, "tomee-embedded");
 
         return properties;
     }
 
-    private Object getModulePath() {
+    private File[] getModulePath() {
         String[] modules = environment.getProperty(EJBContainer.MODULES).split(",");
         List<File> files =
                 Arrays.stream(modules).map(module -> new File(resolveModule(module))).collect(Collectors.toList());
         files.add(new File("target/classes"));
-        return files.toArray();
+        return files.toArray(File[]::new);
     }
 
     private String resolveModule(String module) {
