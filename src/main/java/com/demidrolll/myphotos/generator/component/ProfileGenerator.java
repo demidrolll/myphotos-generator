@@ -2,15 +2,15 @@ package com.demidrolll.myphotos.generator.component;
 
 import com.demidrolll.myphotos.exception.ApplicationException;
 import com.demidrolll.myphotos.model.domain.Profile;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.util.Date;
 import java.util.List;

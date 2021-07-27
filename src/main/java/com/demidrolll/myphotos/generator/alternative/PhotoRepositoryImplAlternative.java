@@ -1,8 +1,7 @@
 package com.demidrolll.myphotos.generator.alternative;
 
 import com.demidrolll.myphotos.ejb.repository.jpa.PhotoRepositoryImpl;
-
-import javax.enterprise.context.Dependent;
+import jakarta.enterprise.context.Dependent;
 
 @Dependent
 @TestDataGeneratorEnvironment

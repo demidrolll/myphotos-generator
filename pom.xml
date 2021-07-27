@@ -24,16 +24,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomee</groupId>
-            <artifactId>tomee-embedded</artifactId>
-            <version>8.0.6</version>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>6.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tomee</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>jakarta.platform</groupId>-->
+<!--            <artifactId>jakarta.jakartaee-api</artifactId>-->
+<!--            <version>9.1.0-RC1</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
@@ -42,6 +41,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>1.7.31</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
             <version>1.7.31</version>
         </dependency>
         <dependency>

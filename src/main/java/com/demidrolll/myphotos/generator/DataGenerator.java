@@ -12,11 +12,11 @@ import com.demidrolll.myphotos.generator.component.ProfileGenerator;
 import com.demidrolll.myphotos.generator.component.UpdatePhotoService;
 import com.demidrolll.myphotos.model.domain.Photo;
 import com.demidrolll.myphotos.model.domain.Profile;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

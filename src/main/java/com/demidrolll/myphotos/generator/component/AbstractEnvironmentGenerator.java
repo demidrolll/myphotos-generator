@@ -1,7 +1,7 @@
 package com.demidrolll.myphotos.generator.component;
 
-import javax.ejb.embeddable.EJBContainer;
-import javax.naming.Context;
+import jakarta.ejb.embeddable.EJBContainer;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,14 +18,46 @@ public abstract class AbstractEnvironmentGenerator {
     private final Map<String, String> variables = new HashMap<>();
 
     protected final void execute() throws Exception {
-        Map<String, Object> properties = setupProperties();
-        try (SshConnection ssh = new SshConnection();
+        /*Map<String, Object> properties = setupProperties();
+        try(SshConnection ssh = new SshConnection()) {
+            startTomcat();
+        }
+        try (//SshConnection ssh = new SshConnection();
              EJBContainer ec = EJBContainer.createEJBContainer(properties)) {
             Context context = ec.getContext();
             context.bind("inject", this);
-            generate();
-        }
+        }*/
+        generate();
     }
+
+    /*private void startTomcat() throws LifecycleException {
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(8787);
+
+        String contextPath = "";
+        String webappDirLocation = "src/main/webapp/";
+        StandardContext ctx = (StandardContext) tomcat.addWebapp(contextPath, new File(webappDirLocation).getAbsolutePath());
+
+        File additionWebInfClasses = new File("target/classes");
+        WebResourceRoot resources = new StandardRoot(ctx);
+        resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
+                additionWebInfClasses.getAbsolutePath(), "/"));
+        ctx.setResources(resources);
+
+        HttpServlet servlet = new HttpServlet() {
+
+            @Override
+            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doGet(req, resp);
+            }
+        };
+
+        tomcat.addServlet(contextPath, "generator", servlet);
+        ctx.addServletMappingDecoded("/generate", "generator");
+
+        tomcat.start();
+        tomcat.getServer().await();
+    }*/
 
     protected abstract void generate() throws Exception;
 
@@ -35,7 +67,7 @@ public abstract class AbstractEnvironmentGenerator {
         setupVariables();
         setupClasspathEnvironmentProperties(properties);
         properties.put(EJBContainer.MODULES, getModulePath());
-        properties.put(EJBContainer.PROVIDER, "tomee-embedded");
+        //properties.put(EJBContainer.PROVIDER, "tomee-embedded");
 
         return properties;
     }
