@@ -12,8 +12,11 @@ import com.demidrolll.myphotos.generator.component.ProfileGenerator;
 import com.demidrolll.myphotos.generator.component.UpdatePhotoService;
 import com.demidrolll.myphotos.model.domain.Photo;
 import com.demidrolll.myphotos.model.domain.Profile;
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +37,8 @@ import java.util.List;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Slf4j
+@Singleton
+@Startup
 public class DataGenerator extends AbstractEnvironmentGenerator {
 
     @Inject
@@ -54,7 +59,7 @@ public class DataGenerator extends AbstractEnvironmentGenerator {
     @EJB
     private UpdateProfileRatingBean updateProfileRatingBean;
 
-    @Resource(mappedName = "MyPhotosDBPool")
+    @Resource(lookup = "jdbc/MyPhotosDBPool")
     private DataSource dataSource;
 
     @Inject
@@ -65,9 +70,10 @@ public class DataGenerator extends AbstractEnvironmentGenerator {
     @Property("myphotos.media.absolute.root")
     private String mediaRoot;
 
-    public static void main(String[] args) {
+    @PostConstruct
+    public void main() {
         try {
-            new DataGenerator().execute();
+            generate();
         } catch (Throwable exception) {
             log.error("Application error", exception);
         }
